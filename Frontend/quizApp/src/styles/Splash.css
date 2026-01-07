@@ -1,0 +1,43 @@
+.splash-container {
+    height: 100vh;
+    background: linear-gradient(135deg, #1b1f3b, #3b3f8c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.splash-card {
+    background: #0f1229;
+    padding: 60px 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.app-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.start-btn {
+  background: #4ade80;
+  color: #0f1229;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10%;
+}
+
+.start-btn:hover {
+  background: #22c55e;
+  transform: translateY(-2px);
+}
