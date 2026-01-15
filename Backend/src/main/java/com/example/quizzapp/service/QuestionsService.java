@@ -56,23 +56,20 @@ public class QuestionsService {
 	    // =========================
 
 	    
-	    public ResponseEntity<List<Questions>> getQuestionsByCategory(String category) {
-	        try {
-	            // normalize category
-	            category = category.toLowerCase();
+	     public ResponseEntity<List<Questions>> getQuestionsByCategory(
+            String category,
+            int questionCount
+    ) {
+        try {
+            List<Questions> questions =
+                questionDao.findRandomQuestionsByCategory(category, questionCount);
 
-	            int QUESTION_COUNT = 10; // change to 15 anytime
+            return ResponseEntity.ok(questions);
 
-	            List<Questions> questions =
-	                questionDao.findRandomQuestionsByCategory(category, QUESTION_COUNT);
-
-	            return new ResponseEntity<>(questions, HttpStatus.OK);
-
-	        } catch (Exception e) {
-	            return new ResponseEntity<>(
-	                new ArrayList<>(),
-	                HttpStatus.INTERNAL_SERVER_ERROR
-	            );
-	        }
-	    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError()
+                    .body(new ArrayList<>());
+        }
+    }
 }
