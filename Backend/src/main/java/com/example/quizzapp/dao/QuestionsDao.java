@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.quizzapp.model.Questions;
@@ -18,18 +17,20 @@ public interface QuestionsDao extends JpaRepository<Questions, Integer> {
 	List<Questions> findByCategory(String category);
 	
 	
+    //// Native query with positional params (IDE may warn, runtime OK)
+
 	 @Query(
       value = """
         SELECT *
         FROM questions
-        WHERE category = :category
+        WHERE category = ?1
         ORDER BY RAND()
-        LIMIT :numQ
+        LIMIT ?2
       """,
       nativeQuery = true
     )
     List<Questions> findRandomQuestionsByCategory(
-        @Param("category") String category,
-        @Param("numQ") int numQ
+        String category,
+        int numQ
     );
 }
